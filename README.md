@@ -12,6 +12,8 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 5. Create .env file with:
  - STRIPE_PUBLISHABLE_KEY=your_test_key_here
  - STRIPE_SECRET_KEY=your_test_key_here
+ - HTTP_ADMIN_USER=your_admin_user
+ - HTTP_ADMIN_PASSWORD=your_admin_password
 6. Sign up for a Stripe account
 7. Put Stripe (test) keys into appropriate .env vars
 8. Run `bin/rails s -b 0.0.0.0` to start the server
