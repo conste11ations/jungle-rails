@@ -18,28 +18,28 @@ require 'rails_helper'
       it "is not valid without a first name" do
         subject.first_name = nil
   
-        expect(subject).to_not be_valid
+        is_expected.to_not be_valid
         expect(subject.errors.full_messages).to include("First name can't be blank")
       end
   
       it "is not valid without a last name" do
         subject.last_name = nil
   
-        expect(subject).to_not be_valid
+        is_expected.to_not be_valid
         expect(subject.errors.full_messages).to include("Last name can't be blank")
       end
   
       it "is not valid without an email" do
         subject.email = nil
   
-        expect(subject).to_not be_valid
+        is_expected.to_not be_valid
         expect(subject.errors.full_messages).to include("Email can't be blank")
       end
   
       it "is not valid without a password" do
         subject.password = nil
   
-        expect(subject).to_not be_valid
+        is_expected.to_not be_valid
         expect(subject.errors.full_messages).to include("Password can't be blank")
       end
   
@@ -47,7 +47,7 @@ require 'rails_helper'
         subject.password = "that"
         subject.password_confirmation = "test"
   
-        expect(subject).to_not be_valid
+        is_expected.to_not be_valid
         expect(subject.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
   
@@ -55,22 +55,22 @@ require 'rails_helper'
         subject.password = "a"
         subject.password_confirmation = "a"
   
-        expect(subject).to_not be_valid
+        is_expected.to_not be_valid
         expect(subject.errors.full_messages).to include("Password is too short (minimum is 2 characters)")
       end
   
-      it "is not valid with a duplicate email" do
+      it "is not valid when trying to register with an existing email" do
         user = User.new(
           first_name: "Hello",
           last_name: "Again",
-          email: "TEST@mail.com",
+          email: "test@mail.com",
           password: "test",
           password_confirmation: "test"
         )
   
         user.save
   
-        expect(subject).to_not be_valid
+        is_expected.to_not be_valid
         expect(subject.errors.full_messages).to include("Email has already been taken")
       end
     end
@@ -90,24 +90,24 @@ require 'rails_helper'
         expect(User.authenticate_with_credentials("email@test.com", "test")).to be_valid
       end
   
-      it "is not valide with incorrect password" do
+      it "is not valid with incorrect password" do
         subject.save
   
-        login = User.authenticate_with_credentials("email@test.com", "text")
+        login = User.authenticate_with_credentials("email@test.com", "wrong")
   
         expect(login).to be_nil
       end
   
-      it "is valid with an email with extra space" do
+      it "is valid even when using email with extra space" do
         subject.save
   
         expect(User.authenticate_with_credentials(" email@test.com ", "test")).to be_valid
       end
   
-      it "is valid with an email not matching case" do
+      it "is valid with a case-insensitive email" do
         subject.save
   
-        expect(User.authenticate_with_credentials("eMaIl@tEst.cOm", "test")).to be_valid
+        expect(User.authenticate_with_credentials("eMaIl@tEst.com", "test")).to be_valid
       end
     end
   end
