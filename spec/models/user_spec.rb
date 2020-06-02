@@ -4,9 +4,9 @@ require 'rails_helper'
     describe 'Validations' do
       subject {
         described_class.new(
-          first_name: "First",
-          last_name: "Last",
-          email: "email@test.com",
+          first_name: "hello",
+          last_name: "world",
+          email: "test@mail.com",
           password: "test",
           password_confirmation: "test"
         )}
@@ -29,7 +29,7 @@ require 'rails_helper'
         expect(subject.errors.full_messages).to include("Last name can't be blank")
       end
   
-      it "is not valid without a email" do
+      it "is not valid without an email" do
         subject.email = nil
   
         expect(subject).to_not be_valid
@@ -51,19 +51,19 @@ require 'rails_helper'
         expect(subject.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
   
-      it "is not valid without a 4 character password" do
-        subject.password = "the"
-        subject.password_confirmation = "the"
+      it "is not valid without a 2 character password" do
+        subject.password = "a"
+        subject.password_confirmation = "a"
   
         expect(subject).to_not be_valid
-        expect(subject.errors.full_messages).to include("Password is too short (minimum is 4 characters)")
+        expect(subject.errors.full_messages).to include("Password is too short (minimum is 2 characters)")
       end
   
       it "is not valid with a duplicate email" do
         user = User.new(
-          first_name: "First",
-          last_name: "Last",
-          email: "Email@Test.com",
+          first_name: "Hello",
+          last_name: "Again",
+          email: "TEST@mail.com",
           password: "test",
           password_confirmation: "test"
         )

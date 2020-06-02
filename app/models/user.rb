@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: {case_sensitive: false}
 
-  validates :password, length: { minimum: 1 }, on: :create
+  validates :password, length: { minimum: 2 }, on: :create
 
   def self.authenticate_with_credentials(email, password)
 
