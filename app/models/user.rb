@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   def self.authenticate_with_credentials(email, password)
 
     user = User.find_by(email: email.strip.downcase)
-    p user
     user && user.authenticate(password) ? user : nil
   end
 end
