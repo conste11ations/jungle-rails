@@ -5,6 +5,16 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 ## Screenshots of completed app
 
 ![Main](docs/main.png)
+![Sign up](docs/signup.png)
+![Log in](docs/login.png)
+![Sold out](docs/soldout.png)
+![Dashboard](docs/dashboard.png)
+![Products](docs/products.png)
+![Categories](docs/categories.png)
+![Cart empty](docs/cart.png)
+![Cart full](docs/cart2.png)
+![Stripe 1](docs/stripe1.png)
+![Stripe 2](docs/stripe2.png)
 
 
 ## Setup
