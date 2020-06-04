@@ -10,15 +10,6 @@
 
       <%= form_tag login_url do %>
 
-      <% if @user.nil? %>
-      <div class="alert alert-danger">
-        <strong>The following errors prevented login from happening:</strong>
-        <ul>
-          <li>Invalid email or password</li>
-        </ul>
-      </div>
-    <% end %>
-
     <div class="form-group">
       <%= label_tag :email %>
       <%= text_field_tag :email, nil, class: 'form-control' %>
